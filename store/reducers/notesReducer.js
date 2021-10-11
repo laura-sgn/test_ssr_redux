@@ -1,4 +1,5 @@
 import { data } from '../../data/noteData'
+import { HYDRATE } from 'next-redux-wrapper'
 
 const initialState = {
   allNotes: data,
