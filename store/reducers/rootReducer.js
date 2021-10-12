@@ -6,6 +6,7 @@ const combinedReducers = combineReducers({
   notes: notesReducer,
 })
 
+
 const rootReducer = (state, action) => {
   if (action.type === HYDRATE) {
     const clientState = {
