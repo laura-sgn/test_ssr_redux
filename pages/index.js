@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { flexContainer } from '../styles/noteFlex'
 import FullNote from '../components/FullNote'
 import NewNote from '../components/NewNote'
+import { wrapper } from '../store/store'
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -14,9 +15,10 @@ export default function Home() {
   const [newNoteVisible, setNewNoteVisible] = useState(false)
   
   
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(fetchNotes())
   }, [])
+  */
 
   if (firstNote) {
     dispatch(fetchNote(firstNote.id))
@@ -32,3 +34,7 @@ export default function Home() {
    </>
   )
 }
+
+export const getStaticProps = wrapper.getStaticProps(store => () => {
+  store.dispatch(fetchNotes())
+})

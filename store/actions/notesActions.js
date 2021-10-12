@@ -23,11 +23,3 @@ export function deleteNote(noteId) {
   return {type: noteActionTypes.DELETE_NOTE, payload: {noteId}}
 }
 
-
-/*
-return function(dispatch) {
-    apiClient.fetchNotes(data => {
-      dispatch(fetchNotesSuccess(data))
-    })
-  }
-*/
