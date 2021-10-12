@@ -35,6 +35,7 @@ export default function Home() {
   )
 }
 
-export const getStaticProps = wrapper.getStaticProps(store => () => {
+export const getServerSideProps = wrapper.getServerSideProps(store => () => {
   store.dispatch(fetchNotes())
 })
+
