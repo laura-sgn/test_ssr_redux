@@ -1,14 +1,14 @@
-import { data } from '../../data/noteData'
+import { getNotes }from "../../lib/apiClient"
 
 export const noteActionTypes = {
-  FETCH_NOTES: 'FETCH_NOTES',
+  FETCH_NOTES_SUCCESS: 'FETCH_NOTES_SUCCESS',
   FETCH_NOTE: 'FETCH_NOTE',
   ADD_NOTE: 'ADD_NOTE',
   DELETE_NOTE: 'DELETE_NOTE',
 }
 
-export function fetchNotes() {
-  return {type: noteActionTypes.FETCH_NOTES, payload: {allNotes: data}}
+export function fetchNotesSuccess(data) {
+  return {type: noteActionTypes.FETCH_NOTES_SUCCESS, payload: {allNotes: data}}
 }
 
 export function fetchNote(noteId) {
@@ -23,3 +23,7 @@ export function deleteNote(noteId) {
   return {type: noteActionTypes.DELETE_NOTE, payload: {noteId}}
 }
 
+export async function getAllNotes() {
+  const notes = await getNotes()
+  return notes
+}

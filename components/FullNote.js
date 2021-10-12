@@ -4,10 +4,10 @@ import { useSelector } from "react-redux"
 import Form from "./Form"
 
 const FullNote = ({ changeNewNoteVisible, changeNoteVisible }) => {
-  const id = useSelector(state => state.notes.currentNote)
+  const currentNoteId = useSelector(state => state.notes.currentNote)
   let note = useSelector(state => state.notes.allNotes)
-    .filter((note) => note.id === id)[0]
-
+    .filter(note => note.id.toString() === currentNoteId)[0]
+  
   if (!note) {
     note = {}
   }
@@ -20,7 +20,7 @@ const FullNote = ({ changeNewNoteVisible, changeNoteVisible }) => {
       />
       <p css={{fontWeight: 'bold'}}>{note.title}</p>
       <p css={{color: 'grey'}}>{note.date} {note.time}</p>
-      <p>{note.content}</p>
+      <p>{note.body}</p>
     </div>
   )
 }

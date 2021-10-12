@@ -1,6 +1,6 @@
 import ListNotes from '../components/ListNotes'
 import { useDispatch } from "react-redux"
-import { fetchNotes, fetchNote } from '../store/actions/notesActions'
+import { getAllNotes, fetchNotesSuccess, fetchNote } from '../store/actions/notesActions'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { flexContainer } from '../styles/noteFlex'
@@ -14,14 +14,13 @@ export default function Home() {
   const [noteVisible, setNoteVisible] = useState(true)
   const [newNoteVisible, setNewNoteVisible] = useState(false)
   
-  
   /*useEffect(() => {
     dispatch(fetchNotes())
   }, [])
   */
 
   if (firstNote) {
-    dispatch(fetchNote(firstNote.id))
+    dispatch(fetchNote(firstNote.id.toString()))
   }
 
   return (
@@ -35,7 +34,8 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(store => () => {
-  store.dispatch(fetchNotes())
+export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
+  const noteData = await getAllNotes()
+  await store.dispatch(fetchNotesSuccess(noteData))
 })
 

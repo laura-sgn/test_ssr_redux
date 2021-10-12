@@ -1,9 +1,6 @@
-import { data } from '../../data/noteData'
-import { HYDRATE } from 'next-redux-wrapper'
-
 const initialState = {
-  allNotes: data,
-  currentNote: '1'
+  allNotes: [],
+  currentNote: '2',
 }
 
 export const notesReducer = (state = initialState, action) => {
@@ -11,7 +8,7 @@ export const notesReducer = (state = initialState, action) => {
       case 'FETCH_NOTE': {
         return {...state, currentNote: action.payload.noteId}
       }
-      case 'FETCH_NOTES': {
+      case 'FETCH_NOTES_SUCCESS': {
         return {...state, allNotes: action.payload.allNotes}
       }
       case 'ADD_NOTE': {

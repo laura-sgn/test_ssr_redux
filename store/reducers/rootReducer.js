@@ -9,20 +9,15 @@ const combinedReducers = combineReducers({
 const rootReducer = (state, action) => {
   if (action.type === HYDRATE) {
     const clientState = {
-      ...state, // use previous state
-      ...action.payload // from hydration
+      ...state, 
+      ...action.payload
     }
-      if (state.notes.allNotes) {
-        clientState.notes.allNotes = state.notes.allNotes // preserve state
-      }
-
-      if (state.notes.currentNote) {
-        clientState.notes.currentNote = state.notes.currentNote
-      }
-      return clientState
+    return clientState
     } else {
       return combinedReducers(state, action)
     }
   }
 
 export default rootReducer
+
+
